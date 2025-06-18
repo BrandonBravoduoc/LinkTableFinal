@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+//Hola
 @Entity
 @Data 
 @Table (name = "usuario")
