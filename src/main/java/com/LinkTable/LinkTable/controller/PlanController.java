@@ -45,7 +45,7 @@ public class PlanController {
     @Operation(summary = "Esta api llama a un planes por su id", description = "esta api se encarga de obtener a un plan por id")
     public ResponseEntity<Plan> buscar(@PathVariable long id) {
         try{
-            Plan plan = planService.getById(id);
+            Plan plan = planService.findById(id);
             return ResponseEntity.ok(plan);
         }
         catch(Exception e){

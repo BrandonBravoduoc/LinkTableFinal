@@ -22,9 +22,8 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    @SuppressWarnings("deprecation")
-    public Usuario getById(Long id){
-        return usuarioRepository.getById(id);
+    public Usuario findById(Long id){
+        return usuarioRepository.findById(id).orElse(null);
     }
     
     public Usuario save(Usuario usuario){

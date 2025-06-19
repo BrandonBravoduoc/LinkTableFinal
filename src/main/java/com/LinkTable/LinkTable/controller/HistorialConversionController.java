@@ -43,7 +43,7 @@ public class HistorialConversionController{
     @Operation(summary = "Esta api llama a un historial por su id", description = "esta api se encarga de obtener a un historial por id")
     public ResponseEntity<HistorialConversion> buscar(@PathVariable long id) {
         try{
-            HistorialConversion historial = historialService.getById(id);
+            HistorialConversion historial = historialService.findById(id);
             return ResponseEntity.ok(historial);
         }
         catch(Exception e){

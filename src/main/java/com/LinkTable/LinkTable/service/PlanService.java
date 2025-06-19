@@ -22,9 +22,8 @@ public class PlanService {
         return  planRepository.findAll();
     }
 
-    @SuppressWarnings("deprecation")
-    public Plan getById(long id){
-        return planRepository.getById(id);
+    public Plan findById(long id){
+        return planRepository.findById(id).orElse(null);
     }
 
     public Plan save(Plan plan){

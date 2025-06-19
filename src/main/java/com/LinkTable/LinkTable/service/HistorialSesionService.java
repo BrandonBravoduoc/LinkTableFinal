@@ -21,9 +21,8 @@ public class HistorialSesionService {
         return historialSesionRepository.findAll();
     }
 
-    @SuppressWarnings("deprecation")
-    public HistorialSesion getById(long id){
-        return historialSesionRepository.getById(id);
+    public HistorialSesion findById(long id){
+        return historialSesionRepository.findById(id).orElse(null);
     }
 
     public HistorialSesion save(HistorialSesion historialSesion){

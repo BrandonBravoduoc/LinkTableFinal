@@ -22,9 +22,8 @@ public class UsuarioPremiumService {
         return usuarioPremiumRepository.findAll();
     }
 
-    @SuppressWarnings("deprecation")
-    public UsuarioPremium getById(long id){
-        return usuarioPremiumRepository.getById(id);
+    public UsuarioPremium findById(long id){
+        return usuarioPremiumRepository.findById(id).orElse(null);
     }
 
     public UsuarioPremium save(UsuarioPremium usuarioPremium){

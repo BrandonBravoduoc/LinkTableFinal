@@ -22,9 +22,8 @@ public class HistorialConversionService {
         return historialConversionRepository.findAll();
     }
 
-    @SuppressWarnings("deprecation")
-    public HistorialConversion getById(long id){
-        return  historialConversionRepository.getById(id);
+    public HistorialConversion findById(long id){
+        return historialConversionRepository.findById(id).orElse(null);
     }
 
     public HistorialConversion save(HistorialConversion historialConversion){

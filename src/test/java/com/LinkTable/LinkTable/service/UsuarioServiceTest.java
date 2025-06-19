@@ -53,7 +53,7 @@ public class UsuarioServiceTest {
     @Test
     public void testFindById(){
         when(usuarioRepository.findById(1L)).thenReturn(java.util.Optional.of(createUsuario()));
-        Usuario usuario = usuarioServices.getById(1L);
+        Usuario usuario = usuarioServices.findById(1L);
         assertNotNull(usuario);
         assertEquals("a", usuario.getPrimerNombre());
     }

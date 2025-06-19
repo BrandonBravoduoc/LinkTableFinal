@@ -44,7 +44,7 @@ public class UsuarioPremiumController {
     @Operation(summary = "Esta api llama a un usuario premium por su id", description = "esta api se encarga de obtener a un usuarios premium por id")
     public ResponseEntity<UsuarioPremium> buscar(@PathVariable long id) {
         try{
-            UsuarioPremium usuarioPremium = usuarioPremiumService.getById(id);
+            UsuarioPremium usuarioPremium = usuarioPremiumService.findById(id);
             return ResponseEntity.ok(usuarioPremium);
         }
         catch(Exception e){

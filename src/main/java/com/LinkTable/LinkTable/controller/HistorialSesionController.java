@@ -41,7 +41,7 @@ public class HistorialSesionController {
     @Operation(summary = "Esta api llama a los historiales de inicio de sesión", description = "esta api se encarga de obtener a los historiales de inicio de sesión")
     public ResponseEntity<HistorialSesion> buscar(@PathVariable long id) {
         try{
-            HistorialSesion historialInicioSesion = historialInicioSesionService.getById(id);
+            HistorialSesion historialInicioSesion = historialInicioSesionService.findById(id);
             return ResponseEntity.ok(historialInicioSesion);
         }
         catch(Exception e){
