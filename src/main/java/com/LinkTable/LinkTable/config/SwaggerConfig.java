@@ -13,7 +13,6 @@ public class SwaggerConfig {
 
      @Bean
     OpenAPI customOpenAPI(){
-        
         return new OpenAPI()
         .info(new Info()
         .title("API de convertidor")
