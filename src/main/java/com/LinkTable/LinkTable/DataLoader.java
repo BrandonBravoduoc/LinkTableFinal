@@ -1,4 +1,4 @@
-package com.LinkTable.LinkTable.util;
+package com.LinkTable.LinkTable;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +27,16 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         Faker faker = new Faker();
-   
-
 
         for(int i = 0; i < 10; i++){
             Usuario usuario = new Usuario();
-            usuario.setId(1 + i);
-            usuario.setCorreo(faker.name().fullName());
-            usuario.setContrasena(null);
+            usuario.setPrimerNombre(faker.name().firstName());
+            usuario.setSegundoNombre(faker.name().firstName());
+            usuario.setApellidoPaterno(faker.name().lastName());
+            usuario.setApellidoMaterno(faker.name().lastName());
+            usuario.setCorreo(faker.internet().emailAddress());
+            usuario.setContrasena(faker.internet().password(8, 20));
+            usuario.setEsPremium(faker.bool().bool() ? "1" : "0");
             usuarioRepository.save(usuario);
         }
     }
