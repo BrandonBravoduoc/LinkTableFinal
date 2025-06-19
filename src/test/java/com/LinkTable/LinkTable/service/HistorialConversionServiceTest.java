@@ -2,6 +2,9 @@ package com.LinkTable.LinkTable.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -20,12 +23,12 @@ import com.LinkTable.LinkTable.repository.HistorialConversionRepository;
 public class HistorialConversionServiceTest {
 
     @Autowired
-    HistorialConversionService historialConversionService;
+    private HistorialConversionService historialConversionService;
 
     @MockBean
-    HistorialConversionRepository historialConversionRepository;
+    private HistorialConversionRepository historialConversionRepository;
 
-    public HistorialConversion createHistorialConversion(){
+    private HistorialConversion createHistorialConversion(){
         return new HistorialConversion(
             1, 
             "excel", 
@@ -59,5 +62,12 @@ public class HistorialConversionServiceTest {
         HistorialConversion savedHistorialConversion = historialConversionService.save(historialConversion);
         assertNotNull(savedHistorialConversion);
         assertEquals("excel", savedHistorialConversion.getTipoConversion());
+    }
+
+    @Test
+    public void testDeleteById(){
+        doNothing().when(historialConversionRepository).deleteById(1L);
+        historialConversionRepository.deleteById(1L);
+        verify(historialConversionRepository, times(1)).deleteById(1L);
     }
 }

@@ -24,7 +24,7 @@ import com.LinkTable.LinkTable.repository.UsuarioRepository;
 public class UsuarioServiceTest {
 
     @Autowired
-    UsuarioService usuarioServices;
+    private UsuarioService usuarioServices;
 
     @MockBean
     private UsuarioRepository usuarioRepository;
