@@ -52,4 +52,12 @@ public class HistorialConversionServiceTest {
 
     }
 
+    @Test
+    public void testSave(){
+        HistorialConversion historialConversion = createHistorialConversion();
+        when(historialConversionRepository.save(historialConversion)).thenReturn(historialConversion);
+        HistorialConversion savedHistorialConversion = historialConversionService.save(historialConversion);
+        assertNotNull(savedHistorialConversion);
+        assertEquals("excel", savedHistorialConversion.getTipoConversion());
+    }
 }
