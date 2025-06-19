@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("api/v1/planes")
-@Tag(name = "Usuarios", description = "Aquí estan los usuarios")
+@Tag(name = "Plan", description = "Aquí estan los planes")
 public class PlanController {
 
     @Autowired
@@ -32,7 +32,7 @@ public class PlanController {
 
 
     @GetMapping
-    @Operation(summary = "Esta api llama todoS los planes", description = "esta api se encarga de obtener todos los planes que hay")
+    @Operation(summary = "Esta api llama todos los planes", description = "esta api se encarga de obtener todos los planes que hay")
     public ResponseEntity<List<Plan>>listar(){
         List<Plan> plan = planService.findAll();
         if(plan.isEmpty()){
