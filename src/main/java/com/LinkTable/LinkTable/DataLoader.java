@@ -40,7 +40,7 @@ public class DataLoader implements CommandLineRunner{
             usuarioRepository.save(usuario);
         }
 
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 5; i++){
             Plan plan = new Plan();
             plan.setTipoPlan(faker.subscription().plans());
             plan.setPrecioPlan(faker.number().numberBetween(2000, 15000));
