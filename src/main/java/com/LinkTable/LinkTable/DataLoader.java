@@ -7,8 +7,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.LinkTable.LinkTable.model.Usuario;
-import com.LinkTable.LinkTable.repository.HistorialConversionRepository;
-import com.LinkTable.LinkTable.repository.HistorialSesionRepository;
 import com.LinkTable.LinkTable.repository.UsuarioRepository;
 
 import net.datafaker.Faker;
@@ -18,10 +16,6 @@ import net.datafaker.Faker;
 public class DataLoader implements CommandLineRunner{
 
     @Autowired UsuarioRepository usuarioRepository;
-
-    @Autowired HistorialConversionRepository historialConversionRepository;
-
-    @Autowired HistorialSesionRepository historialInicioRepository;
 
     @Override
     public void run(String... args) throws Exception {
