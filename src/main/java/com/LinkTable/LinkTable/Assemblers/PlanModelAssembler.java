@@ -16,14 +16,10 @@ public class PlanModelAssembler implements RepresentationModelAssembler<Plan, En
         @Override
         public EntityModel<Plan> toModel(Plan plan) {
                 return EntityModel.of(plan,
-                                linkTo(methodOn(PlanControllerV2.class).getPlanById(Long.valueOf(plan.getId())))
-                                                .withSelfRel(),
+                                linkTo(methodOn(PlanControllerV2.class).getPlanById(Long.valueOf(plan.getId()))).withSelfRel(),
                                 linkTo(methodOn(PlanControllerV2.class).getAllPlanes()).withRel("planes"),
-                                linkTo(methodOn(PlanControllerV2.class).updatePlan(Long.valueOf(plan.getId()), plan))
-                                                .withRel("actualizar"),
-                                linkTo(methodOn(PlanControllerV2.class).deletePlan(Long.valueOf(plan.getId())))
-                                                .withRel("eliminar"),
-                                linkTo(methodOn(PlanControllerV2.class).patchPlan(Long.valueOf(plan.getId()), plan))
-                                                .withRel("actualizar-parcial"));
+                                linkTo(methodOn(PlanControllerV2.class).updatePlan(Long.valueOf(plan.getId()), plan)).withRel("actualizar"),
+                                linkTo(methodOn(PlanControllerV2.class).deletePlan(Long.valueOf(plan.getId()))).withRel("eliminar"),
+                                linkTo(methodOn(PlanControllerV2.class).patchPlan(Long.valueOf(plan.getId()), plan)).withRel("actualizar-parcial"));
         }
 }
