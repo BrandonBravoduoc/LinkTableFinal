@@ -21,7 +21,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 @RequestMapping("/api/v2/historiales-Sesiones")
-@Tag(name = "Historial de inicio V2", description = "Aqui estan los historiales de sesion")
+@Tag(name = "Historiales de inicios de sesion V2", description = "Aqui estan los historiales de sesion")
 public class HistorialSesionControllerV2 {
 
     @Autowired
