@@ -28,26 +28,25 @@ public class HistorialConversionServiceTest {
     @MockBean
     private HistorialConversionRepository historialConversionRepository;
 
-    private HistorialConversion createHistorialConversion(){
+    private HistorialConversion createHistorialConversion() {
         return new HistorialConversion(
-            1, 
-            "excel", 
-            "hola",
-            new Usuario(),
-            LocalDate.now()
-        );
+                1,
+                "excel",
+                "hola",
+                new Usuario(),
+                LocalDate.now());
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         when(historialConversionRepository.findAll()).thenReturn(List.of(createHistorialConversion()));
-        List<HistorialConversion> historialConversions =historialConversionService.findAll();
+        List<HistorialConversion> historialConversions = historialConversionService.findAll();
         assertNotNull(historialConversions);
         assertEquals(1, historialConversions.size());
     }
 
     @Test
-    public void testFindById(){
+    public void testFindById() {
         when(historialConversionRepository.findById(1L)).thenReturn(java.util.Optional.of(createHistorialConversion()));
         HistorialConversion historialConversion = historialConversionService.findById(1L);
         assertNotNull(historialConversion);
@@ -56,7 +55,7 @@ public class HistorialConversionServiceTest {
     }
 
     @Test
-    public void testSave(){
+    public void testSave() {
         HistorialConversion historialConversion = createHistorialConversion();
         when(historialConversionRepository.save(historialConversion)).thenReturn(historialConversion);
         HistorialConversion savedHistorialConversion = historialConversionService.save(historialConversion);
@@ -65,7 +64,7 @@ public class HistorialConversionServiceTest {
     }
 
     @Test
-    public void testDeleteById(){
+    public void testDeleteById() {
         doNothing().when(historialConversionRepository).deleteById(1L);
         historialConversionRepository.deleteById(1L);
         verify(historialConversionRepository, times(1)).deleteById(1L);

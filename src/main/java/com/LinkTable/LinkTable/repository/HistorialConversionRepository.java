@@ -8,8 +8,10 @@ import org.springframework.data.repository.query.Param;
 
 import com.LinkTable.LinkTable.model.HistorialConversion;
 
-public interface HistorialConversionRepository extends JpaRepository<HistorialConversion, Long>{
+public interface HistorialConversionRepository extends JpaRepository<HistorialConversion, Long> {
 
     @Query("SELECT h FROM HistorialConversion h WHERE h.usuario.id = :usuarioId")
     List<HistorialConversion> obtenerHistorialPorUsuario(@Param("usuarioId") Long usuarioId);
+
+    void deleteAllByUsuarioId(Long usuarioId);
 }

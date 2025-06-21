@@ -1,6 +1,5 @@
 package com.LinkTable.LinkTable.service;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -19,7 +18,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import com.LinkTable.LinkTable.model.Usuario;
 import com.LinkTable.LinkTable.repository.UsuarioRepository;
 
-
 @SpringBootTest
 public class UsuarioServiceTest {
 
@@ -29,21 +27,20 @@ public class UsuarioServiceTest {
     @MockBean
     private UsuarioRepository usuarioRepository;
 
-    private Usuario createUsuario(){
+    private Usuario createUsuario() {
         return new Usuario(
-            1,
-            "a",
-            "b",
-            "c",
-            "d",
-            "asd",
-            "dsd",
-            "s"
-        );
+                1,
+                "a",
+                "b",
+                "c",
+                "d",
+                "asd",
+                "dsd",
+                "s");
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         when(usuarioRepository.findAll()).thenReturn(List.of(createUsuario()));
         List<Usuario> usuario = usuarioServices.findAll();
         assertNotNull(usuario);
@@ -51,7 +48,7 @@ public class UsuarioServiceTest {
     }
 
     @Test
-    public void testFindById(){
+    public void testFindById() {
         when(usuarioRepository.findById(1L)).thenReturn(java.util.Optional.of(createUsuario()));
         Usuario usuario = usuarioServices.findById(1L);
         assertNotNull(usuario);
@@ -59,7 +56,7 @@ public class UsuarioServiceTest {
     }
 
     @Test
-    public void testSave(){
+    public void testSave() {
         Usuario usuario = createUsuario();
         when(usuarioRepository.save(usuario)).thenReturn(usuario);
         Usuario savedUsuario = usuarioServices.save(usuario);
@@ -68,7 +65,7 @@ public class UsuarioServiceTest {
     }
 
     @Test
-    public void testPatchUsuario(){
+    public void testPatchUsuario() {
         Usuario existingUsuario = createUsuario();
         Usuario patchData = new Usuario();
         patchData.setPrimerNombre("a Actualizado");
@@ -82,9 +79,9 @@ public class UsuarioServiceTest {
     }
 
     @Test
-    public void testDeleteById(){
+    public void testDeleteById() {
         doNothing().when(usuarioRepository).deleteById(1L);
         usuarioRepository.deleteById(1L);
         verify(usuarioRepository, times(1)).deleteById(1L);
-    }    
+    }
 }

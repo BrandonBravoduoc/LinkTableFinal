@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table (name = "Historial_Conversion")
+@Table(name = "Historial_Conversion")
 @AllArgsConstructor
 @NoArgsConstructor
 

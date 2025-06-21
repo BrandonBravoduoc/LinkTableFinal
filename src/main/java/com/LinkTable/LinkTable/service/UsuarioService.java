@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.LinkTable.LinkTable.model.Usuario;
+import com.LinkTable.LinkTable.repository.HistorialConversionRepository;
+import com.LinkTable.LinkTable.repository.HistorialSesionRepository;
 import com.LinkTable.LinkTable.repository.UsuarioRepository;
 
 import jakarta.transaction.Transactional;
@@ -16,53 +18,69 @@ import jakarta.transaction.Transactional;
 public class UsuarioService {
 
     @Autowired
+    private HistorialSesionRepository historialSesionRepository;
+
+    @Autowired
+    private HistorialConversionRepository historialConversionRepository;
+
+    @Autowired
     UsuarioRepository usuarioRepository;
 
-    public List<Usuario>findAll(){
+    public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
 
-    public Usuario findById(Long id){
+    public Usuario findById(Long id) {
         return usuarioRepository.findById(id).orElse(null);
     }
-    
-    public Usuario save(Usuario usuario){
+
+    public Usuario save(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
-    public void delete(long id){
-        usuarioRepository.deleteById(id);
+    public void delete(Long id) {
+        Usuario usuario = usuarioRepository.findById(id).orElse(null);
+        if (usuario != null) {
+            // 1. Eliminar sesiones
+            historialSesionRepository.deleteAllByUsuarioId(id);
+
+            // 2. Eliminar conversiones
+            historialConversionRepository.deleteAllByUsuarioId(id);
+
+            // 3. Eliminar el usuario
+            usuarioRepository.delete(usuario);
+        }
     }
 
-    public Usuario patchUsuario(Long id, Usuario usuario){
+    public Usuario patchUsuario(Long id, Usuario usuario) {
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
-        if(usuarioOptional.isPresent()){
+        if (usuarioOptional.isPresent()) {
             Usuario usuarioToUpdate = usuarioOptional.get();
 
-            if(usuario.getPrimerNombre()!= null){
+            if (usuario.getPrimerNombre() != null) {
                 usuarioToUpdate.setPrimerNombre(usuario.getPrimerNombre());
             }
-            if(usuario.getSegundoNombre()!= null){
+            if (usuario.getSegundoNombre() != null) {
                 usuarioToUpdate.setSegundoNombre(usuario.getSegundoNombre());
             }
-            if(usuario.getApellidoMaterno()!= null){
+            if (usuario.getApellidoMaterno() != null) {
                 usuarioToUpdate.setApellidoMaterno(usuario.getApellidoMaterno());
             }
-            if(usuario.getApellidoPaterno()!= null){
+            if (usuario.getApellidoPaterno() != null) {
                 usuarioToUpdate.setApellidoPaterno(usuario.getApellidoPaterno());
             }
-            if(usuario.getCorreo()!= null){
+            if (usuario.getCorreo() != null) {
                 usuarioToUpdate.setCorreo(usuario.getCorreo());
             }
-            if(usuario.getContrasena()!= null){
+            if (usuario.getContrasena() != null) {
                 usuarioToUpdate.setContrasena(usuario.getContrasena());
             }
-            if(usuario.getEsPremium()!=null){
+            if (usuario.getEsPremium() != null) {
                 usuarioToUpdate.setEsPremium(usuario.getEsPremium());
             }
             return usuarioRepository.save(usuarioToUpdate);
-        }else{
-        return null;
+        } else {
+            return null;
         }
     }
 }

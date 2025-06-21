@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table (name = "Historial_Sesion")
+@Table(name = "Historial_Sesion")
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -38,4 +38,5 @@ public class HistorialSesion {
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
+
 }
