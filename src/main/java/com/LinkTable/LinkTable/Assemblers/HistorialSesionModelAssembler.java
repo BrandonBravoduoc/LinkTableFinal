@@ -1,15 +1,18 @@
 package com.LinkTable.LinkTable.Assemblers;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-
 import com.LinkTable.LinkTable.controller.v2.HistorialSesionControllerV2;
 import com.LinkTable.LinkTable.model.HistorialSesion;
+
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @Component
-public class HistorialSesionModelAssembler implements RepresentationModelAssembler<HistorialSesion, EntityModel<HistorialSesion>> {
+public class HistorialSesionModelAssembler
+                implements RepresentationModelAssembler<HistorialSesion, EntityModel<HistorialSesion>> {
 
         @Override
         public EntityModel<HistorialSesion> toModel(HistorialSesion historialSesion) {

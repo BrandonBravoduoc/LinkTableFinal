@@ -2,14 +2,17 @@ package com.LinkTable.LinkTable.Assemblers;
 
 import com.LinkTable.LinkTable.controller.v2.UsuarioPremiumControllerV2;
 import com.LinkTable.LinkTable.model.UsuarioPremium;
+
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
-public class UsuarioPremiumModelAssembler implements RepresentationModelAssembler<UsuarioPremium, EntityModel<UsuarioPremium>> {
+public class UsuarioPremiumModelAssembler
+                implements RepresentationModelAssembler<UsuarioPremium, EntityModel<UsuarioPremium>> {
 
         @Override
         public EntityModel<UsuarioPremium> toModel(UsuarioPremium usuarioPremium) {
