@@ -1,5 +1,11 @@
 package com.LinkTable.LinkTable.Assemblers;
 
+<<<<<<< Updated upstream
+=======
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
+>>>>>>> Stashed changes
 import com.LinkTable.LinkTable.controller.v2.HistorialSesionControllerV2;
 import com.LinkTable.LinkTable.model.HistorialSesion;
 
