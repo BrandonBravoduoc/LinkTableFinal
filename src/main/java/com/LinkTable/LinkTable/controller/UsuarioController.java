@@ -65,7 +65,8 @@ public class UsuarioController {
         }
     }
 
-   @PutMapping("/{id}")
+    @PutMapping("/{id}")
+    @Operation(summary = "Esta api actualiza un usuario", description = "esta api se encarga de actualizar a un usuario existente")
     public ResponseEntity<Usuario> updateUsuario(@RequestBody Usuario usuario) {
         Usuario updatedUsuario = usuarioService.save(usuario);
         if (updatedUsuario == null) {
@@ -73,7 +74,6 @@ public class UsuarioController {
         }
         return ResponseEntity.ok(updatedUsuario);
     }
-
 
     @PatchMapping("/{id}")
     @Operation(summary = "Esta api actualiza parcialmente un usuario", description = "esta api se encarga de actualizar parcialmente a un usuario existente")

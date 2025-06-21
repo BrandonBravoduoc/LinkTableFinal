@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
-@RequestMapping("/api/v2/historialSesiones")
-@Tag(name = "Historiales V2", description = "Aqui estan los historiales de sesion")
+@RequestMapping("/api/v2/historiales-Sesiones")
+@Tag(name = "Historial de inicio V2", description = "Aqui estan los historiales de sesion")
 public class HistorialSesionControllerV2 {
 
     @Autowired
@@ -31,7 +31,7 @@ public class HistorialSesionControllerV2 {
     private HistorialSesionModelAssembler assembler;
 
     @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
-    @Operation(summary = "Esta api llama todo a los historiales de inicio de sesión", description = "esta api se encarga de obtener todos los historiales de inicio de sesión que hay")
+    @Operation(summary = "Esta api llama todo a los historiales de inicio de sesión", description = "esta api se encarga de obtener todos los historiales de inicio de sesión que hay, incluyendo enlaces HATEOAS")
     public ResponseEntity<CollectionModel<EntityModel<HistorialSesion>>> getAllHistorialSesiones() {
         List<EntityModel<HistorialSesion>> sesiones = historialSesionService.findAll().stream()
                 .map(assembler::toModel)
@@ -46,7 +46,7 @@ public class HistorialSesionControllerV2 {
     }
 
     @GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
-    @Operation(summary = "Esta api llama a los historiales de inicio de sesión", description = "esta api se encarga de obtener a los historiales de inicio de sesión")
+    @Operation(summary = "Esta api llama a los historiales de inicio de sesión", description = "esta api se encarga de obtener a los historiales de inicio de sesión, incluyendo enlaces HATEOAS")
     public ResponseEntity<EntityModel<HistorialSesion>> getHistorialSesionById(@PathVariable Long id) {
         HistorialSesion historialSesion = historialSesionService.findById(id);
         if (historialSesion == null) {
@@ -56,7 +56,7 @@ public class HistorialSesionControllerV2 {
     }
 
     @PostMapping(produces = MediaTypes.HAL_JSON_VALUE)
-    @Operation(summary = "Esta api se encarga de crear historial de inicio de sesión", description = "Esta api se encarga de crear un historial de inicio de sesión")
+    @Operation(summary = "Esta api se encarga de crear historial de inicio de sesión", description = "Esta api se encarga de crear un historial de inicio de sesión, incluyendo enlaces HATEOAS")
     public ResponseEntity<EntityModel<HistorialSesion>> createHistorialSesion(
             @RequestBody HistorialSesion historialSesion) {
         HistorialSesion newSesion = historialSesionService.save(historialSesion);
@@ -68,7 +68,7 @@ public class HistorialSesionControllerV2 {
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
-    @Operation(summary = "Esta api elimina a un historial de inicio de sesión", description = "esta api se encarga de eliminar a un historial de inicio de sesión")
+    @Operation(summary = "Esta api elimina a un historial de inicio de sesión", description = "esta api se encarga de eliminar a un historial de inicio de sesión, incluyendo enlaces HATEOAS")
     public ResponseEntity<Void> deleteHistorialSesion(@PathVariable Long id) {
         HistorialSesion historialSesion = historialSesionService.findById(id);
         if (historialSesion == null) {

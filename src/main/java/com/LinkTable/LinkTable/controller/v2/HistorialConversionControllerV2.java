@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
-@RequestMapping("/api/v2/historialesConversion")
-@Tag(name = "Historiales V2", description = "Aqui estan los historiales de conversion")
+@RequestMapping("/api/v2/historiales-Conversiones")
+@Tag(name = "Historiales Conversiones V2", description = "Aqui estan los historiales de conversion")
 public class HistorialConversionControllerV2 {
 
     @Autowired
@@ -31,7 +31,7 @@ public class HistorialConversionControllerV2 {
     private HistorialConversionModelAssembler assembler;
 
     @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
-    @Operation(summary = "Esta api llama a todo los historiales de conversion v2", description = "esta api se encarga de obtener todos los historiles que hay")
+    @Operation(summary = "Esta api llama a todo los historiales de conversion v2", description = "esta api se encarga de obtener todos los historiles que hay, incluyendo enlaces HATEOAS")
     public ResponseEntity<CollectionModel<EntityModel<HistorialConversion>>> getAllHistorialConversions() {
         List<EntityModel<HistorialConversion>> list = historialConversionService.findAll().stream()
                 .map(assembler::toModel)
@@ -47,7 +47,7 @@ public class HistorialConversionControllerV2 {
     }
 
     @GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
-    @Operation(summary = "Esta api llama a un historial por su id", description = "esta api se encarga de obtener a un historial por id")
+    @Operation(summary = "Esta api llama a un historial por su id", description = "esta api se encarga de obtener a un historial por id, incluyendo enlaces HATEOAS")
     public ResponseEntity<EntityModel<HistorialConversion>> getHistorialConversionById(@PathVariable Long id) {
         HistorialConversion hc = historialConversionService.findById(id);
         if (hc == null) {
@@ -57,7 +57,7 @@ public class HistorialConversionControllerV2 {
     }
 
     @PostMapping(produces = MediaTypes.HAL_JSON_VALUE)
-    @Operation(summary = "Esta api se encarga de crear a un historial", description = "Esta api se encarga de crear una nuevo historial")
+    @Operation(summary = "Esta api se encarga de crear a un historial", description = "Esta api se encarga de crear una nuevo historial, incluyendo enlaces HATEOAS")
     public ResponseEntity<EntityModel<HistorialConversion>> createHistorialConversion(
             @RequestBody HistorialConversion historialConversion) {
         HistorialConversion newHC = historialConversionService.save(historialConversion);
@@ -70,7 +70,7 @@ public class HistorialConversionControllerV2 {
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
-    @Operation(summary = "Esta api elimina a un historial", description = "esta api se encarga de eliminar a un historial existente")
+    @Operation(summary = "Esta api elimina a un historial", description = "esta api se encarga de eliminar a un historial existente, incluyendo enlaces HATEOAS")
     public ResponseEntity<Void> deleteHistorialConversion(@PathVariable Long id) {
         HistorialConversion hc = historialConversionService.findById(id);
         if (hc == null) {
