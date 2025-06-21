@@ -9,8 +9,7 @@ import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
 @Component
-public class HistorialConversionModelAssembler
-                implements RepresentationModelAssembler<HistorialConversion, EntityModel<HistorialConversion>> {
+public class HistorialConversionModelAssembler implements RepresentationModelAssembler<HistorialConversion, EntityModel<HistorialConversion>> {
 
         @Override
         public EntityModel<HistorialConversion> toModel(HistorialConversion historialConversion) {

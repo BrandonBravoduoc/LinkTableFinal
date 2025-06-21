@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @Component
-public class UsuarioPremiumModelAssembler
-                implements RepresentationModelAssembler<UsuarioPremium, EntityModel<UsuarioPremium>> {
+public class UsuarioPremiumModelAssembler implements RepresentationModelAssembler<UsuarioPremium, EntityModel<UsuarioPremium>> {
 
         @Override
         public EntityModel<UsuarioPremium> toModel(UsuarioPremium usuarioPremium) {
