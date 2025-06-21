@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("api/v1/historiales_sesion")
+@RequestMapping("api/v1/historiales-Sesiones")
 @Tag(name = "Historial de inicio", description = "Aqui estan los historiales de inicio de sesión")
 public class HistorialSesionController {
 
@@ -67,7 +67,6 @@ public class HistorialSesionController {
         }
     }
 
-    
     //Query
     @GetMapping("/usuario/{id}")
     public ResponseEntity<List<HistorialSesion>> obtenerPorUsuario(@PathVariable("id") Long usuarioId) {

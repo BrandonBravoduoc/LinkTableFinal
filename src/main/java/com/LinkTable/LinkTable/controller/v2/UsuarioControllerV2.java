@@ -4,6 +4,7 @@ import com.LinkTable.LinkTable.Assemblers.UsuarioModelAssembler;
 import com.LinkTable.LinkTable.model.Usuario;
 import com.LinkTable.LinkTable.service.UsuarioService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,11 @@ import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 @RequestMapping("/api/v2/usuarios")
@@ -30,6 +32,7 @@ public class UsuarioControllerV2 {
     private UsuarioModelAssembler assembler;
 
     @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api llama todos los usuarios", description = "esta api se encarga de obtener todos los usuarios que hay incluyendo enlaces HATEOAS")
     public ResponseEntity<CollectionModel<EntityModel<Usuario>>> getAllUsuarios() {
         List<EntityModel<Usuario>> usuarios = usuarioService.findAll().stream()
                 .map(assembler::toModel)
@@ -45,6 +48,7 @@ public class UsuarioControllerV2 {
     }
 
     @GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api llama a un usuario por su id", description = "esta api se encarga de obtener a un usuarios por id, incluyendo enlaces HATEOAS")
     public ResponseEntity<EntityModel<Usuario>> getUsuarioById(@PathVariable Long id) {
         Usuario usuario = usuarioService.findById(id);
         if (usuario == null) {
@@ -54,6 +58,7 @@ public class UsuarioControllerV2 {
     }
 
     @PostMapping(produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api se encarga de crear a un usuarios", description = "Esta api se encarga de crear una nuevo usuario, incluyendo enlaces HATEOAS")
     public ResponseEntity<EntityModel<Usuario>> createUsuario(@RequestBody Usuario usuario) {
         Usuario newUsuario = usuarioService.save(usuario);
         return ResponseEntity
@@ -63,6 +68,7 @@ public class UsuarioControllerV2 {
     }
 
     @PutMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api actualiza un usuario", description = "esta api se encarga de actualizar a un usuario existente, incluyendo enlaces HATEOAS")
     public ResponseEntity<EntityModel<Usuario>> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
         usuario.setId(id.intValue());
         Usuario updatedUsuario = usuarioService.save(usuario);
@@ -70,6 +76,7 @@ public class UsuarioControllerV2 {
     }
 
     @PatchMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api actualiza parcialmente un usuario", description = "esta api se encarga de actualizar parcialmente a un usuario existente, incluyendo enlaces HATEOAS")
     public ResponseEntity<EntityModel<Usuario>> patchUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
         Usuario updatedUsuario = usuarioService.patchUsuario(id, usuario);
         if (updatedUsuario == null) {
@@ -79,6 +86,7 @@ public class UsuarioControllerV2 {
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api elimina a un usuario", description = "esta api se encarga de eliminar a un usuario existente, incluyendo enlaces HATEOAS")
     public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
         Usuario usuario = usuarioService.findById(id);
         if (usuario == null) {

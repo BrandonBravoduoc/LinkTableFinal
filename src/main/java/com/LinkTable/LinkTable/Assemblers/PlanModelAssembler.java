@@ -13,6 +13,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Component
 public class PlanModelAssembler implements RepresentationModelAssembler<Plan, EntityModel<Plan>> {
 
+        @SuppressWarnings("null")
         @Override
         public EntityModel<Plan> toModel(Plan plan) {
                 return EntityModel.of(plan,
