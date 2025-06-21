@@ -11,19 +11,13 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
-public class UsuarioPremiumModelAssembler implements RepresentationModelAssembler<UsuarioPremium, EntityModel<UsuarioPremium>> {
+public class UsuarioPremiumModelAssembler
+                implements RepresentationModelAssembler<UsuarioPremium, EntityModel<UsuarioPremium>> {
 
         @SuppressWarnings("null")
         @Override
         public EntityModel<UsuarioPremium> toModel(UsuarioPremium usuarioPremium) {
                 return EntityModel.of(usuarioPremium,
-<<<<<<< Updated upstream
-                                linkTo(methodOn(UsuarioPremiumControllerV2.class).getUsuarioPremiumById(Long.valueOf(usuarioPremium.getId()))).withSelfRel(),
-                                linkTo(methodOn(UsuarioPremiumControllerV2.class).getAllUsuariosPremium()).withRel("usuariosPremium"),
-                                linkTo(methodOn(UsuarioPremiumControllerV2.class).updateUsuarioPremium(Long.valueOf(usuarioPremium.getId()),usuarioPremium)).withRel("actualizar"),
-                                linkTo(methodOn(UsuarioPremiumControllerV2.class).deleteUsuarioPremium(Long.valueOf(usuarioPremium.getId()))).withRel("eliminar"),
-                                linkTo(methodOn(UsuarioPremiumControllerV2.class).patchUsuarioPremium(Long.valueOf(usuarioPremium.getId()),usuarioPremium)).withRel("actualizar-parcial"));
-=======
                                 linkTo(methodOn(UsuarioPremiumControllerV2.class)
                                                 .getUsuarioPremiumById(Long.valueOf(usuarioPremium.getId())))
                                                 .withSelfRel(),
@@ -36,8 +30,7 @@ public class UsuarioPremiumModelAssembler implements RepresentationModelAssemble
                                                 .deleteUsuarioPremium(Long.valueOf(usuarioPremium.getId())))
                                                 .withRel("eliminar"),
                                 linkTo(methodOn(UsuarioPremiumControllerV2.class).patchUsuarioPremium(
-                                                Long.valueOf(usuarioPremium.getId()),
-                                                usuarioPremium)).withRel("actualizar-parcial"));
->>>>>>> Stashed changes
+                                                Long.valueOf(usuarioPremium.getId()), usuarioPremium))
+                                                .withRel("actualizar-parcial"));
         }
 }
