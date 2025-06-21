@@ -11,8 +11,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
-public class HistorialSesionModelAssembler
-                implements RepresentationModelAssembler<HistorialSesion, EntityModel<HistorialSesion>> {
+public class HistorialSesionModelAssembler implements RepresentationModelAssembler<HistorialSesion, EntityModel<HistorialSesion>> {
 
         @Override
         public EntityModel<HistorialSesion> toModel(HistorialSesion historialSesion) {
