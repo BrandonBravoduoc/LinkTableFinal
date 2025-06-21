@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -63,6 +64,16 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se puedo guardar");
         }
     }
+
+   @PutMapping("/{id}")
+    public ResponseEntity<Usuario> updateUsuario(@RequestBody Usuario usuario) {
+        Usuario updatedUsuario = usuarioService.save(usuario);
+        if (updatedUsuario == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updatedUsuario);
+    }
+
 
     @PatchMapping("/{id}")
     @Operation(summary = "Esta api actualiza parcialmente un usuario", description = "esta api se encarga de actualizar parcialmente a un usuario existente")

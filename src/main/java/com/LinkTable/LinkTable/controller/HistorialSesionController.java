@@ -67,7 +67,6 @@ public class HistorialSesionController {
         }
     }
 
-    
     //Query
     @GetMapping("/usuario/{id}")
     public ResponseEntity<List<HistorialSesion>> obtenerPorUsuario(@PathVariable("id") Long usuarioId) {

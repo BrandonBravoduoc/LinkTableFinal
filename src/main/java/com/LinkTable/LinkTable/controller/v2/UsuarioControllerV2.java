@@ -4,6 +4,7 @@ import com.LinkTable.LinkTable.Assemblers.UsuarioModelAssembler;
 import com.LinkTable.LinkTable.model.Usuario;
 import com.LinkTable.LinkTable.service.UsuarioService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class UsuarioControllerV2 {
     private UsuarioModelAssembler assembler;
 
     @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api llama todos los usuarios", description = "esta api se encarga de obtener todos los usuarios que hay")
     public ResponseEntity<CollectionModel<EntityModel<Usuario>>> getAllUsuarios() {
         List<EntityModel<Usuario>> usuarios = usuarioService.findAll().stream()
                 .map(assembler::toModel)
@@ -45,6 +47,7 @@ public class UsuarioControllerV2 {
     }
 
     @GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api llama a un usuario por su id", description = "esta api se encarga de obtener a un usuarios por id")
     public ResponseEntity<EntityModel<Usuario>> getUsuarioById(@PathVariable Long id) {
         Usuario usuario = usuarioService.findById(id);
         if (usuario == null) {
@@ -54,6 +57,7 @@ public class UsuarioControllerV2 {
     }
 
     @PostMapping(produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api se encarga de crear a un usuarios", description = "Esta api se encarga de crear una nuevo usuario")
     public ResponseEntity<EntityModel<Usuario>> createUsuario(@RequestBody Usuario usuario) {
         Usuario newUsuario = usuarioService.save(usuario);
         return ResponseEntity

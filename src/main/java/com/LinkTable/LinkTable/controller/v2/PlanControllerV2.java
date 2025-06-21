@@ -4,6 +4,7 @@ import com.LinkTable.LinkTable.Assemblers.PlanModelAssembler;
 import com.LinkTable.LinkTable.model.Plan;
 import com.LinkTable.LinkTable.service.PlanService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class PlanControllerV2 {
     private PlanModelAssembler assembler;
 
     @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api llama a un planes por su id", description = "esta api se encarga de obtener a un plan por id")
     public ResponseEntity<CollectionModel<EntityModel<Plan>>> getAllPlanes() {
         List<EntityModel<Plan>> planes = planService.findAll().stream()
                 .map(assembler::toModel)
@@ -45,6 +47,7 @@ public class PlanControllerV2 {
     }
 
     @GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api llama a un planes por su id", description = "esta api se encarga de obtener a un plan por id")
     public ResponseEntity<EntityModel<Plan>> getPlanById(@PathVariable Long id) {
         Plan plan = planService.findById(id);
         if (plan == null) {
@@ -53,7 +56,8 @@ public class PlanControllerV2 {
         return ResponseEntity.ok(assembler.toModel(plan));
     }
 
-    @PostMapping(produces = MediaTypes.HAL_JSON_VALUE)
+    @PostMapping(value = "registrar", produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api se encarga de crear un plan", description = "Esta api se encarga de crear una nuevo plan")
     public ResponseEntity<EntityModel<Plan>> createPlan(@RequestBody Plan plan) {
         Plan nuevoPlan = planService.save(plan);
         return ResponseEntity
@@ -62,6 +66,7 @@ public class PlanControllerV2 {
     }
 
     @PutMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api actualiza un plan", description = "esta api se encarga de actualizar un plan existente")
     public ResponseEntity<EntityModel<Plan>> updatePlan(@PathVariable Long id, @RequestBody Plan plan) {
         plan.setId(id.intValue());
         Plan actualizado = planService.save(plan);
@@ -69,6 +74,7 @@ public class PlanControllerV2 {
     }
 
     @PatchMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api actualiza parcialmente un plan", description = "esta api se encarga de actualizar parcialmente a un plan existente")
     public ResponseEntity<EntityModel<Plan>> patchPlan(@PathVariable Long id, @RequestBody Plan plan) {
         Plan actualizado = planService.patchPlan(id, plan);
         if (actualizado == null) {
@@ -78,6 +84,7 @@ public class PlanControllerV2 {
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Esta api elimina a un plan", description = "esta api se encarga de eliminar un plan existente")
     public ResponseEntity<Void> deletePlan(@PathVariable Long id) {
         Plan plan = planService.findById(id);
         if (plan == null) {

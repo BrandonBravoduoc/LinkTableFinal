@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -63,6 +64,16 @@ public class PlanController {
         catch(Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se puedo guardar");
         }
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Esta api actualiza plan", description = "esta api se encarga de actualizar un plan existente")
+    public ResponseEntity<Plan> updateEstudiante(@RequestBody Plan plan) {
+        Plan updatedPlan = planService.save(plan);
+        if (updatedPlan == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(plan);
     }
 
     @PatchMapping("/{id}")
