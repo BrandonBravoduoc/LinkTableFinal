@@ -28,7 +28,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/api/v2/historiales-Conversiones")
-@Tag(name = "Historiales Conversiones V2", description = "Aqui estan los historiales de conversion")
+@Tag(name = "Historiales Conversiones V2", description = "Aquí estan los historiales de conversion")
 public class HistorialConversionControllerV2 {
 
     @Autowired

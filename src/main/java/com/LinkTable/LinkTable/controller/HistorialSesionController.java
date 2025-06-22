@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("api/v1/historiales-Sesiones")
-@Tag(name = "Historial de inicio", description = "Aqui estan los historiales de inicio de sesión")
+@Tag(name = "Historiales de inicio de sesión", description = "Aquí estan los historiales de inicio de sesión")
 public class HistorialSesionController {
 
     @Autowired
@@ -69,6 +69,7 @@ public class HistorialSesionController {
 
     //Query
     @GetMapping("/usuario/{id}")
+    @Operation(summary = "QUERY")
     public ResponseEntity<List<HistorialSesion>> obtenerPorUsuario(@PathVariable("id") Long usuarioId) {
         List<HistorialSesion> historial = historialInicioSesionService.ObtenerHistorialDeUsuario(usuarioId);
         if (historial.isEmpty()) {

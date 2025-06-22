@@ -22,7 +22,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("api/v1/historiales-Conversiones")
-@Tag(name = "Historiales Conversiones", description = "Aqui estan los historiales de conversion")
+@Tag(name = "Historiales de conversiones", description = "Aquí estan los historiales de conversion")
 public class HistorialConversionController{
 
     @Autowired

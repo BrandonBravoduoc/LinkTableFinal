@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v2/usuarios")
-@Tag(name = "Usuarios V2", description = "Aqui estan los usuarios")
+@Tag(name = "Usuarios V2", description = "Aquí estan los usuarios")
 public class UsuarioControllerV2 {
 
     @Autowired
