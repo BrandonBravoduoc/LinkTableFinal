@@ -62,8 +62,7 @@ public class UsuarioControllerV2 {
     public ResponseEntity<EntityModel<Usuario>> createUsuario(@RequestBody Usuario usuario) {
         Usuario newUsuario = usuarioService.save(usuario);
         return ResponseEntity
-                .created(linkTo(methodOn(UsuarioControllerV2.class).getUsuarioById(Long.valueOf(newUsuario.getId())))
-                        .toUri())
+                .created(linkTo(methodOn(UsuarioControllerV2.class).getUsuarioById(Long.valueOf(newUsuario.getId()))).toUri())
                 .body(assembler.toModel(newUsuario));
     }
 

@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("api/v1/usuariosPremium")
-@Tag(name = "Usuarios", description = "Aquí estan los usuarios")
+@Tag(name = "Usuarios Premium", description = "Aquí estan los usuarios premium")
 public class UsuarioPremiumController {
 
     @Autowired
