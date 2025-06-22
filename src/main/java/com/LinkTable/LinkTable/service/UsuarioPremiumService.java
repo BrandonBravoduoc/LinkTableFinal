@@ -34,6 +34,11 @@ public class UsuarioPremiumService {
         usuarioPremiumRepository.deleteById(id);
     }
 
+    //Query
+    public List<UsuarioPremium> obtenerUsuariosPremiumConUsuarioYPlan() {
+        return usuarioPremiumRepository.obtenerUsuariosPremiumConUsuarioYPlan();
+    }
+
     public UsuarioPremium patchUsuarioPremium(Long id, UsuarioPremium usuarioPremium){
         Optional<UsuarioPremium> usuarioOptional = usuarioPremiumRepository.findById(id);
         if(usuarioOptional.isPresent()){

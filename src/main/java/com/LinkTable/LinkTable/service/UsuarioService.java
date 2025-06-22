@@ -53,6 +53,13 @@ public class UsuarioService {
         }
     }
 
+    //Query
+    public Usuario obtenerUsuarioPorCorreo(String correo) {
+    return usuarioRepository.obtenerUsuarioPorCorreo(correo);
+    }
+
+  
+
     public Usuario patchUsuario(Long id, Usuario usuario) {
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
         if (usuarioOptional.isPresent()) {

@@ -96,4 +96,10 @@ public class UsuarioPremiumController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+    @GetMapping("/datosUsuarios")
+    public ResponseEntity<List<UsuarioPremium>> obtenerUsuariosPremiumConUsuarioYPlan() {
+        List<UsuarioPremium> usuariosPremium = usuarioPremiumService.obtenerUsuariosPremiumConUsuarioYPlan();
+        return ResponseEntity.ok(usuariosPremium);
+    }
 }
