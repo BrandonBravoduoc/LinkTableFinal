@@ -25,6 +25,7 @@ public class HistorialConversionServiceTest {
     @Autowired
     private HistorialConversionService historialConversionService;
 
+    @SuppressWarnings("removal")
     @MockBean
     private HistorialConversionRepository historialConversionRepository;
 

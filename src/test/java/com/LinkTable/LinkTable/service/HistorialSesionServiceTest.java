@@ -25,6 +25,7 @@ public class HistorialSesionServiceTest {
     @Autowired
     private HistorialSesionService historialSesionService;
 
+    @SuppressWarnings("removal")
     @MockBean
     private HistorialSesionRepository historialSesionRepository;
 

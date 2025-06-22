@@ -24,6 +24,7 @@ public class PlanServiceTest {
     @Autowired
     private PlanService planService;
 
+    @SuppressWarnings("removal")
     @MockBean
     private PlanRepository planRepository;
 

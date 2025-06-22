@@ -24,6 +24,7 @@ public class UsuarioServiceTest {
     @Autowired
     private UsuarioService usuarioServices;
 
+    @SuppressWarnings("removal")
     @MockBean
     private UsuarioRepository usuarioRepository;
 
