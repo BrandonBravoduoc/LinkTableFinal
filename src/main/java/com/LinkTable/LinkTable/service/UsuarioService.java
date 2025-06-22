@@ -40,12 +40,12 @@ public class UsuarioService {
 
     public void delete(Long id) {
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
-        //Eliminación por cascada :D
+        // Eliminación por cascada :D
         if (usuario != null) {
-            // 1. Eliminar sesiones
+            // 1. Eliminar Historial de sesiones
             historialSesionRepository.deleteAllByUsuarioId(id);
 
-            // 2. Eliminar conversiones
+            // 2. Eliminar Historial de conversiones
             historialConversionRepository.deleteAllByUsuarioId(id);
 
             // 3. Eliminar el usuario
