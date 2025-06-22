@@ -5,7 +5,8 @@ import com.LinkTable.LinkTable.model.LoginRequest;
 import com.LinkTable.LinkTable.service.AuthService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import org.springframework.beans.factory.annotation.Autowired;
