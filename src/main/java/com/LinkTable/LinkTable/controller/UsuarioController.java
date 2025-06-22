@@ -67,7 +67,7 @@ public class UsuarioController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Esta api actualiza un usuario", description = "esta api se encarga de actualizar a un usuario existente")
-    public ResponseEntity<Usuario> updateUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
         Usuario updatedUsuario = usuarioService.save(usuario);
         if (updatedUsuario == null) {
             return ResponseEntity.notFound().build();
