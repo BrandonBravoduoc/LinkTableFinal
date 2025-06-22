@@ -29,7 +29,6 @@ public class PlanController {
     @Autowired
     private PlanService planService;
 
-
     @GetMapping
     @Operation(summary = "Esta api llama todos los planes", description = "esta api se encarga de obtener todos los planes que hay")
     public ResponseEntity<List<Plan>>listar(){

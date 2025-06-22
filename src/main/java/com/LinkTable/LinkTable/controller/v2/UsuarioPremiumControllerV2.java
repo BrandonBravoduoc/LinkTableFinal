@@ -66,13 +66,10 @@ public class UsuarioPremiumControllerV2 {
 
     @PostMapping(produces = MediaTypes.HAL_JSON_VALUE)
     @Operation(summary = "Esta api se encarga de crear a un usuarios premium", description = "Esta api se encarga de crear una nuevo usuario premium, incluyendo enlaces HATEOAS")
-    public ResponseEntity<EntityModel<UsuarioPremium>> createUsuarioPremium(
-            @RequestBody UsuarioPremium usuarioPremium) {
+    public ResponseEntity<EntityModel<UsuarioPremium>> createUsuarioPremium(@RequestBody UsuarioPremium usuarioPremium) {
         UsuarioPremium nuevo = usuarioPremiumService.save(usuarioPremium);
         return ResponseEntity
-                .created(
-                        linkTo(methodOn(UsuarioPremiumControllerV2.class)
-                                .getUsuarioPremiumById(Long.valueOf(nuevo.getId()))).toUri())
+                .created(linkTo(methodOn(UsuarioPremiumControllerV2.class).getUsuarioPremiumById(Long.valueOf(nuevo.getId()))).toUri())
                 .body(assembler.toModel(nuevo));
     }
 
