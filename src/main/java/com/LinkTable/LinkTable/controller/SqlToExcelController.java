@@ -24,7 +24,7 @@ public class SqlToExcelController {
     @Autowired
     private SqlToExcelService exportService;
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Esta api sube consulta SQL", description = "Esta api permite subir un consulta SQL")
     public ResponseEntity<byte[]> convertirArchivoSql(@RequestParam("archivoSql") MultipartFile archivoSql,
             @RequestParam("correo") String correo) {
