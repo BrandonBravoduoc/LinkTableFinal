@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.LinkTable.LinkTable.model.HistorialConversion;
 import com.LinkTable.LinkTable.repository.HistorialConversionRepository;
+import com.LinkTable.LinkTable.repository.UsuarioRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -17,6 +18,9 @@ public class HistorialConversionService {
 
     @Autowired
     HistorialConversionRepository historialConversionRepository;
+
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
     public List<HistorialConversion>findAll(){
         return historialConversionRepository.findAll();
@@ -34,6 +38,7 @@ public class HistorialConversionService {
         historialConversionRepository.deleteById(id);
     }
 
+    //Query
     public List<HistorialConversion> obtenerHistorialPorUsuario(Long usuarioId){
       return historialConversionRepository.obtenerHistorialPorUsuario(usuarioId);
     }
