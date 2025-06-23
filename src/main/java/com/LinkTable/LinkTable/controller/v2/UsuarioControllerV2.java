@@ -5,7 +5,7 @@ import com.LinkTable.LinkTable.model.Usuario;
 import com.LinkTable.LinkTable.service.UsuarioService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -70,7 +71,8 @@ public class UsuarioControllerV2 {
     public ResponseEntity<EntityModel<Usuario>> createUsuario(@RequestBody Usuario usuario) {
         Usuario newUsuario = usuarioService.save(usuario);
         return ResponseEntity
-                .created(linkTo(methodOn(UsuarioControllerV2.class).getUsuarioById(Long.valueOf(newUsuario.getId()))).toUri())
+                .created(linkTo(methodOn(UsuarioControllerV2.class).getUsuarioById(Long.valueOf(newUsuario.getId())))
+                        .toUri())
                 .body(assembler.toModel(newUsuario));
     }
 
