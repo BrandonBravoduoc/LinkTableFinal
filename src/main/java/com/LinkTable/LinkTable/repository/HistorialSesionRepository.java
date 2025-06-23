@@ -19,4 +19,7 @@ public interface HistorialSesionRepository extends JpaRepository<HistorialSesion
     List<HistorialSesion> obtenerPorUsuario(@Param("usuarioId") Long usuarioId);
 
     void deleteAllByUsuarioId(Long usuarioId);
+
+    void deleteAllByUsuario_IdAndUsuario_Correo(Integer usuarioId, String correo);
+
 }

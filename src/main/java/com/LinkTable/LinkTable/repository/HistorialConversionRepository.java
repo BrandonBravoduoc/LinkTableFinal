@@ -14,4 +14,7 @@ public interface HistorialConversionRepository extends JpaRepository<HistorialCo
     List<HistorialConversion> obtenerHistorialPorUsuario(@Param("usuarioId") Long usuarioId);
 
     void deleteAllByUsuarioId(Long usuarioId);
+
+    void deleteAllByUsuario_IdAndUsuario_Correo(Integer usuarioId, String correo);
+
 }

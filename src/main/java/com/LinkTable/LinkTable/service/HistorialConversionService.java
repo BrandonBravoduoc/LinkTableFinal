@@ -22,24 +22,29 @@ public class HistorialConversionService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    public List<HistorialConversion>findAll(){
+    public List<HistorialConversion> findAll() {
         return historialConversionRepository.findAll();
     }
 
-    public HistorialConversion findById(long id){
+    public HistorialConversion findById(long id) {
         return historialConversionRepository.findById(id).orElse(null);
     }
 
-    public HistorialConversion save(HistorialConversion historialConversion){
+    public HistorialConversion save(HistorialConversion historialConversion) {
         return historialConversionRepository.save(historialConversion);
     }
 
-    public void delete(long id){
+    public void delete(long id) {
         historialConversionRepository.deleteById(id);
     }
 
-    //Query
-    public List<HistorialConversion> obtenerHistorialPorUsuario(Long usuarioId){
-      return historialConversionRepository.obtenerHistorialPorUsuario(usuarioId);
+    // Query
+    public List<HistorialConversion> obtenerHistorialPorUsuario(Long usuarioId) {
+        return historialConversionRepository.obtenerHistorialPorUsuario(usuarioId);
     }
+
+    public void eliminarConversionesPorCorreo(Integer usuarioId, String correo) {
+        historialConversionRepository.deleteAllByUsuario_IdAndUsuario_Correo(usuarioId, correo);
+    }
+
 }

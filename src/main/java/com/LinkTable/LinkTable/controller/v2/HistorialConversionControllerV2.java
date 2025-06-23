@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -84,6 +85,16 @@ public class HistorialConversionControllerV2 {
             return ResponseEntity.notFound().build();
         }
         historialConversionService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping(value = "/eliminar-por-correo", produces = MediaTypes.HAL_JSON_VALUE)
+    @Operation(summary = "Elimina conversiones por ID de usuario y correo", description = "Elimina todas las conversiones que coincidan con el ID de usuario y correo")
+    public ResponseEntity<Void> eliminarConversionesPorCorreo(
+            @RequestParam Integer usuarioId,
+            @RequestParam String correo) {
+
+        historialConversionService.eliminarConversionesPorCorreo(usuarioId, correo);
         return ResponseEntity.noContent().build();
     }
 }
