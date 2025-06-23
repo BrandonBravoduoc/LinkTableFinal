@@ -33,6 +33,7 @@ public class HistorialSesionService {
         historialSesionRepository.deleteById(id);
     }
 
+    //Query     
     public List<HistorialSesion>ObtenerHistorialDeUsuario(Long usuarioId){
         return historialSesionRepository.obtenerPorUsuario(usuarioId);
     }
