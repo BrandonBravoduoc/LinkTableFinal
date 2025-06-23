@@ -11,25 +11,15 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
-public class HistorialSesionModelAssembler
-                implements RepresentationModelAssembler<HistorialSesion, EntityModel<HistorialSesion>> {
+public class HistorialSesionModelAssembler implements RepresentationModelAssembler<HistorialSesion, EntityModel<HistorialSesion>> {
 
         @SuppressWarnings("null")
         @Override
         public EntityModel<HistorialSesion> toModel(HistorialSesion historialSesion) {
                 return EntityModel.of(historialSesion,
-                                linkTo(methodOn(HistorialSesionControllerV2.class)
-                                                .getHistorialSesionById(Long.valueOf(historialSesion.getId())))
-                                                .withSelfRel(),
-                                linkTo(methodOn(HistorialSesionControllerV2.class).getAllHistorialSesiones())
-                                                .withRel("historialSesiones"),
-                                linkTo(methodOn(HistorialSesionControllerV2.class)
-                                                .deleteHistorialSesion(Long.valueOf(historialSesion.getId())))
-                                                .withRel("eliminar"),
-                                linkTo(methodOn(HistorialSesionControllerV2.class)
-                                                .eliminarSesionesPorCorreo(
-                                                                historialSesion.getUsuario().getId(),
-                                                                historialSesion.getUsuario().getCorreo()))
-                                                .withRel("eliminarcorreo"));
+                                linkTo(methodOn(HistorialSesionControllerV2.class).getHistorialSesionById(Long.valueOf(historialSesion.getId()))).withSelfRel(),
+                                linkTo(methodOn(HistorialSesionControllerV2.class).getAllHistorialSesiones()).withRel("historialSesiones"),
+                                linkTo(methodOn(HistorialSesionControllerV2.class).deleteHistorialSesion(Long.valueOf(historialSesion.getId()))).withRel("eliminar"),
+                                linkTo(methodOn(HistorialSesionControllerV2.class).eliminarSesionesPorCorreo(historialSesion.getUsuario().getId(),historialSesion.getUsuario().getCorreo())).withRel("eliminarcorreo"));
         }
 }
