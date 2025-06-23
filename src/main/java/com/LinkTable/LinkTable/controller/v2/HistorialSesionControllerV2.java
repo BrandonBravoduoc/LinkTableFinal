@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.MediaTypes;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -93,6 +95,30 @@ public class HistorialSesionControllerV2 {
             @RequestParam String correo) {
 
         historialSesionService.eliminarSesionesPorCorreo(usuarioId, correo);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}&{exitoso/fallido}")
+    @Operation(summary = "Buscar sesiones exitosas o no exitosas por usuario")
+    public ResponseEntity<CollectionModel<EntityModel<HistorialSesion>>> obtenerPorExito(
+            @RequestParam Integer usuarioId,
+            @RequestParam Boolean exitoso) {
+
+        List<EntityModel<HistorialSesion>> sesiones = historialSesionService
+                .obtenerSesionesPorExito(usuarioId, exitoso)
+                .stream()
+                .map(assembler::toModel)
+                .toList();
+
+        return ResponseEntity.ok(CollectionModel.of(sesiones));
+    }
+
+    @DeleteMapping("/eliminar-por-fecha")
+    @Operation(summary = "Eliminar sesiones por usuario y fecha")
+    public ResponseEntity<Void> eliminarPorFecha(
+            @RequestParam Integer usuarioId,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
+        historialSesionService.eliminarSesionesPorFecha(usuarioId, fecha);
         return ResponseEntity.noContent().build();
     }
 

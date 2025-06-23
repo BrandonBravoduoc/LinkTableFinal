@@ -30,6 +30,10 @@ public class HistorialSesionModelAssembler
                                                 .eliminarSesionesPorCorreo(
                                                                 historialSesion.getUsuario().getId(),
                                                                 historialSesion.getUsuario().getCorreo()))
-                                                .withRel("eliminarcorreo"));
+                                                .withRel("eliminarcorreo"),
+                                linkTo(methodOn(HistorialSesionControllerV2.class)
+                                                .eliminarPorFecha(historialSesion.getUsuario().getId(),
+                                                                historialSesion.getFechaInicioSesion()))
+                                                .withRel("eliminar-por-fecha"));
         }
 }

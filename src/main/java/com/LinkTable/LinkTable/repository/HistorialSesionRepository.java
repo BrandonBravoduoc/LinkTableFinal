@@ -22,4 +22,8 @@ public interface HistorialSesionRepository extends JpaRepository<HistorialSesion
 
     void deleteAllByUsuario_IdAndUsuario_Correo(Integer usuarioId, String correo);
 
+    List<HistorialSesion> findAllByUsuario_IdAndExitoso(Integer usuarioId, Boolean exitoso);
+
+    void deleteAllByUsuario_IdAndFechaInicioSesion(Integer usuarioId, LocalDate fechaInicioSesion);
+
 }

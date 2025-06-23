@@ -1,6 +1,10 @@
 package com.LinkTable.LinkTable.service;
 
-import org.apache.poi.ss.usermodel.*;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import org.junit.jupiter.api.Test;
@@ -16,17 +20,18 @@ import com.LinkTable.LinkTable.model.Usuario;
 import com.LinkTable.LinkTable.repository.HistorialConversionRepository;
 import com.LinkTable.LinkTable.repository.UsuarioRepository;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class SqlToExcelServiceTest {
 
+    @SuppressWarnings("removal")
     @MockBean
     private UsuarioRepository usuarioRepository;
 
+    @SuppressWarnings("removal")
     @MockBean
     private HistorialConversionRepository historialConversionRepository;
 
