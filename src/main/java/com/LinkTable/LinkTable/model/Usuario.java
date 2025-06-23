@@ -1,5 +1,7 @@
 package com.LinkTable.LinkTable.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +39,7 @@ public class Usuario {
     @Column(unique = true, length = 100, nullable = false)
     private String correo;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(length = 20, nullable = false)
     private String contrasena;
 
