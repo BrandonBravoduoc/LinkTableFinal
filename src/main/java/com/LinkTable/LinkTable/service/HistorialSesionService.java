@@ -1,6 +1,5 @@
 package com.LinkTable.LinkTable.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,14 +39,6 @@ public class HistorialSesionService {
 
     public void eliminarSesionesPorCorreo(Integer usuarioId, String correo) {
         historialSesionRepository.deleteAllByUsuario_IdAndUsuario_Correo(usuarioId, correo);
-    }
-
-    public List<HistorialSesion> obtenerSesionesPorExito(Integer usuarioId, Boolean exitoso) {
-        return historialSesionRepository.findAllByUsuario_IdAndExitoso(usuarioId, exitoso);
-    }
-
-    public void eliminarSesionesPorFecha(Integer usuarioId, LocalDate fecha) {
-        historialSesionRepository.deleteAllByUsuario_IdAndFechaInicioSesion(usuarioId, fecha);
     }
 
 }
