@@ -86,12 +86,10 @@ public class HistorialSesionControllerV2 {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping(value = "/{id}&{correo}", produces = MediaTypes.HAL_JSON_VALUE)
+    @DeleteMapping(value = "/eliminar-por-correo", produces = MediaTypes.HAL_JSON_VALUE)
     @Operation(summary = "Elimina sesiones por ID de usuario y correo", description = "Elimina todas las sesiones que coincidan con el ID de usuario y correo")
-    public ResponseEntity<Void> eliminarSesionesPorCorreo(
-            @RequestParam Integer usuarioId,
+    public ResponseEntity<Void> eliminarSesionesPorCorreo(@RequestParam Integer usuarioId,
             @RequestParam String correo) {
-
         historialSesionService.eliminarSesionesPorCorreo(usuarioId, correo);
         return ResponseEntity.noContent().build();
     }
