@@ -35,7 +35,7 @@ class SqlToExcelServiceTest {
 
     @Test
     void testConvertirSqlAExcel() throws Exception {
-        // Simular usuario
+
         Usuario usuario = new Usuario();
         usuario.setId(1);
         usuario.setPrimerNombre("Brandon");
@@ -44,19 +44,15 @@ class SqlToExcelServiceTest {
         Mockito.when(usuarioRepository.findByCorreo("test@correo.com"))
                 .thenReturn(java.util.Optional.of(usuario));
 
-        // Simular archivo SQL
         String sql = "INSERT INTO ejemplo (col1, col2) VALUES ('valor1', 'valor2');";
         MockMultipartFile archivoSimulado = new MockMultipartFile(
                 "archivo", "ejemplo.sql", "text/plain", sql.getBytes());
 
-        // Ejecutar método
         byte[] excelGenerado = sqlToExcelService.convertirSqlAExcel(archivoSimulado, "test@correo.com");
 
-        // Validaciones
         assertNotNull(excelGenerado);
         assertTrue(excelGenerado.length > 0);
 
-        // Leer y validar Excel generado
         try (InputStream in = new ByteArrayInputStream(excelGenerado);
                 XSSFWorkbook workbook = new XSSFWorkbook(in)) {
 
